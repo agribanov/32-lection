@@ -1,0 +1,16 @@
+<app-operand 
+  [title]="'A'" 
+  [value]="operandA"
+  (onValueChange) = "onOperandValueChange('operandA', $event)"
+  ></app-operand>
+<app-operand 
+  [title]="'B'" 
+  [value]="operandB"
+  (onValueChange) = "onOperandValueChange('operandB', $event)"
+  ></app-operand>
+<button (click)="onCalculateBtnClick()">Calculate</button>
+<div>Result: {{result}}</div>
+
+<ul>
+  <li *ngFor="let name of arr">{{name}}</li>
+</ul>
