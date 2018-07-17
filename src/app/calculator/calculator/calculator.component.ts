@@ -9,8 +9,15 @@ export class CalculatorComponent implements OnInit {
   operandA: number = 10
   operandB: number = 5
   result: number
-
-  arr: string[] = ['apple', 'banana', 'pineapple'];
+  operator = '+'
+  operators = ['+', '-', '/', '*']
+  operatorFns = {
+    '+': (a, b) => a + b,
+    '-': (a, b) => a - b,
+    '/': (a, b) => a / b,
+    '*': (a, b) => a * b,
+    'default': () => console.warn('operator not found')
+  }
 
   constructor() { }
 
@@ -19,7 +26,6 @@ export class CalculatorComponent implements OnInit {
 
   onCalculateBtnClick(){
     this.calculateResult()
-    this.operandA = 500;
   }
 
   onOperandValueChange(operandName: string, value: number){
@@ -27,7 +33,13 @@ export class CalculatorComponent implements OnInit {
   }
 
   calculateResult(){
-    this.result = this.operandA + this.operandB;
+    const operatorFn = this.getOperatorFn(this.operator);
+    
+    this.result = operatorFn(this.operandA, this.operandB);
+  }
+
+  getOperatorFn(operator: string){
+    return this.operatorFns[operator] || this.operatorFns['default']
   }
 
 }

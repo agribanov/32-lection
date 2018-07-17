@@ -1,16 +1,15 @@
 <app-operand 
   [title]="'A'" 
-  [value]="operandA"
-  (onValueChange) = "onOperandValueChange('operandA', $event)"
+  [(value)]="operandA"
   ></app-operand>
+
+<select name="operator" [(ngModel)] = "operator">
+  <option value="{{op}}" *ngFor="let op of operators">{{op}}</option>
+</select>
+
 <app-operand 
   [title]="'B'" 
-  [value]="operandB"
-  (onValueChange) = "onOperandValueChange('operandB', $event)"
+  [(value)]="operandB"
   ></app-operand>
 <button (click)="onCalculateBtnClick()">Calculate</button>
-<div>Result: {{result}}</div>
-
-<ul>
-  <li *ngFor="let name of arr">{{name}}</li>
-</ul>
+<div>Result: {{result | formatResult:operandA:operandB:operator}}</div>
