@@ -15,7 +15,11 @@ export class UsersComponent implements OnInit{
   constructor(private usersService: UsersService) { }
 
   ngOnInit(){
-    this.list = this.usersService.list()
+    this.updateList()
+  }
+
+  updateList(){
+    this.list= this.usersService.list();
   }
 
   changePage(pageToGo: string): void {
@@ -25,6 +29,10 @@ export class UsersComponent implements OnInit{
   onUserSelect(user: User): void{
     this.currentUser = user;
     this.changePage('edit');
+  }
+
+  onFormClose(){
+    this.changePage('list');
   }
 
 }

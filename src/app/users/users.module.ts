@@ -7,10 +7,12 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UsersService } from './users.service';
 import { UserFormComponent } from './user-form/user-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [UsersComponent],
   providers: [UsersService],

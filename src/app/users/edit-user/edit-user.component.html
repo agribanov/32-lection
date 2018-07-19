@@ -1,3 +1,5 @@
-<p>
-  edit-user works!
-</p>
+<h2>Edit User</h2>
+<app-user-form 
+  [user]="user"
+  (save)="onFormSave($event)"
+  (cancel)="onFormCancel()"></app-user-form>

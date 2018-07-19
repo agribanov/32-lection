@@ -18,4 +18,28 @@ export class UsersService {
   get(id: number): User{
     return this.users.find((u) => u.id === id)
   }
+
+  set(user: User): User{
+    return user.id ? this.update(user) : this.add(user);
+  }
+
+  update(user: User): User{
+    const index = this.users.findIndex(((u)=> u.id === user.id));
+
+    this.users = [
+      ...this.users.slice(0, index),
+      user,
+      ... this.users.slice(index + 1)
+    ];
+
+    return user;
+  }
+
+  add(user: User): User{
+    user.id = Date.now();
+
+    this.users = [...this.users, user]
+
+    return user;
+  }
 }

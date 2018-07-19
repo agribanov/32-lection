@@ -6,7 +6,13 @@
     <app-users-list *ngSwitchCase="'list'"
       [list]="list" (itemSelect)="onUserSelect($event)">
     </app-users-list>
-    <app-edit-user *ngSwitchCase="'edit'"></app-edit-user>
-    <app-add-user *ngSwitchCase="'add'"></app-add-user>
+    <app-edit-user 
+      *ngSwitchCase="'edit'"
+      [userId]="currentUser.id"
+      (close) = "onFormClose()"
+      ></app-edit-user>
+    <app-add-user 
+      *ngSwitchCase="'add'"
+      (close)="onFormClose()"></app-add-user>
     <div *ngSwitchDefault>Page not found</div>
 </div>

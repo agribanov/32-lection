@@ -13,7 +13,7 @@ export class UserFormComponent {
 
   constructor() { }
 
-  onSaveBtnClick(){
+  onFormSubmit(){
     this.save.emit(this.user);
   }
 
