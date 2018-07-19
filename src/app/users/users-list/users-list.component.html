@@ -9,11 +9,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>Alex</td>
-      <td>Gribanov</td>
-      <td>32</td>
+    <tr *ngFor="let user of list"
+    (click)="onRowClick(user)">
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.surname}}</td>
+      <td>{{user.age}}</td>
       <td>Delete</td>
     </tr>
   </tbody>

@@ -6,6 +6,7 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UsersService } from './users.service';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { UsersService } from './users.service';
   ],
   exports: [UsersComponent],
   providers: [UsersService],
-  declarations: [UsersComponent, UsersNavComponent, UsersListComponent, AddUserComponent, EditUserComponent]
+  declarations: [UsersComponent, UsersNavComponent, UsersListComponent, AddUserComponent, EditUserComponent, UserFormComponent]
 })
 export class UsersModule { }
