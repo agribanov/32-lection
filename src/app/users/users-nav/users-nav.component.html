@@ -1,0 +1,12 @@
+<ul>
+  <li 
+    [ngClass]="{active: isActive('list')}"
+    (click)="changePage('list')">
+      List
+    </li>
+  <li 
+    [ngClass]="{active: isActive('add')}"
+    (click)="changePage('add')">
+      Add User
+    </li>
+</ul>

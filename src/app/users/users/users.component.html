@@ -1,0 +1,10 @@
+<app-users-nav 
+  [page]="page"
+  (pageChange)="changePage($event)"
+  ></app-users-nav>
+<div [ngSwitch]="page">
+    <app-users-list *ngSwitchCase="'list'"></app-users-list>
+    <app-edit-user *ngSwitchCase="'edit'"></app-edit-user>
+    <app-add-user *ngSwitchCase="'add'"></app-add-user>
+    <div *ngSwitchDefault>Page not found</div>
+</div>
