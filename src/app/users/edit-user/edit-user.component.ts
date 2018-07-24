@@ -9,10 +9,15 @@ import { AddUserComponent } from '../add-user/add-user.component';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent extends AddUserComponent implements OnInit {
-  @Input() userId: number
   user: User = new User;
 
   ngOnInit() {
-    this.user = this.usersService.get(this.userId);
+    this.getUser();
+  }
+
+  getUser(){
+    const id = +this.route.snapshot.params.id;
+
+    this.user = this.usersService.get(id);
   }
 }

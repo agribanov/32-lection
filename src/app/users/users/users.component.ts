@@ -7,32 +7,8 @@ import { Users, User } from '../models/User';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit{
-  page = 'list'
-  list: Users
-  currentUser: User
+export class UsersComponent{
 
-  constructor(private usersService: UsersService) { }
-
-  ngOnInit(){
-    this.updateList()
-  }
-
-  updateList(){
-    this.list= this.usersService.list();
-  }
-
-  changePage(pageToGo: string): void {
-    this.page = pageToGo;
-  }
-
-  onUserSelect(user: User): void{
-    this.currentUser = user;
-    this.changePage('edit');
-  }
-
-  onFormClose(){
-    this.changePage('list');
-  }
+  constructor() { }
 
 }

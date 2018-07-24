@@ -8,13 +8,23 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { UsersService } from './users.service';
 import { UserFormComponent } from './user-form/user-form.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {path: '', redirectTo: 'list', pathMatch: 'full'},
+  {path: 'add',  component: AddUserComponent},
+  {path: 'list',  component: UsersListComponent},
+  {path: ':id',  component: EditUserComponent},
+]
+
 
 @NgModule({
   imports: [
+    RouterModule,
     CommonModule,
     FormsModule
   ],
-  exports: [UsersComponent],
+  exports: [],
   providers: [UsersService],
   declarations: [UsersComponent, UsersNavComponent, UsersListComponent, AddUserComponent, EditUserComponent, UserFormComponent]
 })

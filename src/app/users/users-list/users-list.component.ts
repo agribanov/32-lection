@@ -1,18 +1,27 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { User, Users } from '../models/User'
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css']
 })
-export class UsersListComponent {
-  @Input() list: Users
-  @Output() itemSelect = new EventEmitter<User>()
+export class UsersListComponent implements OnInit{
+  list: Users
+  // @Output() itemSelect = new EventEmitter<User>()
 
-  constructor() { }
+  constructor(private usersService: UsersService) { }
+
+  ngOnInit(){
+    this.updateList()
+  }
+
+  updateList(){
+    this.list= this.usersService.list();
+  }
 
   onRowClick(user: User): void{
-    this.itemSelect.emit(user);
+    // this.itemSelect.emit(user);
   }
 }

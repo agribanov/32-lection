@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { User } from '../models/User';
 import { UsersService } from '../users.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -8,14 +9,16 @@ import { UsersService } from '../users.service';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent {
-  @Output() close = new EventEmitter<void>()
-
   user: User = new User;
 
-  constructor(protected usersService: UsersService) { }
+  constructor(
+    protected usersService: UsersService, 
+    private router: Router,
+    protected route: ActivatedRoute
+  ) { }
 
   closeForm(){
-    this.close.emit();
+    this.router.navigate(['../'], { relativeTo: this.route })
   }
 
   onFormSave(user: User){
