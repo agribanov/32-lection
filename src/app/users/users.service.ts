@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Users, USERS, User } from './models/User';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 const apiUrl = 'https://5b2153d4ca762000147b2730.mockapi.io/users'
 
 @Injectable({
@@ -8,39 +10,28 @@ const apiUrl = 'https://5b2153d4ca762000147b2730.mockapi.io/users'
 export class UsersService {
   users: Users
   
-  constructor() {
+  constructor(private http: HttpClient) {
     this.users = USERS;
   }
 
-  list(): Users{
-    return this.users;
+  list(): Observable<Users>{
+    return this.http.get<Users>(apiUrl);
   }
 
-  get(id: number): User{
-    return this.users.find((u) => u.id === id)
+  get(id: number): Observable<User>{
+    return this.http.get<User>(apiUrl + '/' + id);
   }
 
-  set(user: User): User{
+  set(user: User): Observable<User>{
     return user.id ? this.update(user) : this.add(user);
   }
 
-  update(user: User): User{
-    const index = this.users.findIndex(((u)=> u.id === user.id));
-
-    this.users = [
-      ...this.users.slice(0, index),
-      user,
-      ... this.users.slice(index + 1)
-    ];
-
-    return user;
+  update(user: User): Observable<User>{
+    return this.http.put<User>(apiUrl + '/' + user.id, user);
   }
 
-  add(user: User): User{
-    user.id = Date.now();
+  add(user: User): Observable<User>{
+    return this.http.post<User>(apiUrl, user);
 
-    this.users = [...this.users, user]
-
-    return user;
   }
 }

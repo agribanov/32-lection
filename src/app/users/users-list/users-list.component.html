@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of list" [routerLink]="[user.id]">
+    <tr *ngFor="let user of list$ | async" [routerLink]="[user.id]">
       <td>{{user.id}}</td>
       <td>{{user.name}}</td>
       <td>{{user.surname}}</td>

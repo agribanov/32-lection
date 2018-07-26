@@ -1,15 +1,15 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { User, Users } from '../models/User'
 import { UsersService } from '../users.service';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css']
 })
-export class UsersListComponent implements OnInit{
-  list: Users
-  // @Output() itemSelect = new EventEmitter<User>()
+export class UsersListComponent implements OnInit, OnDestroy{
+  list$: Observable<Users>
 
   constructor(private usersService: UsersService) { }
 
@@ -17,8 +17,12 @@ export class UsersListComponent implements OnInit{
     this.updateList()
   }
 
+  ngOnDestroy(){
+  }
+
   updateList(){
-    this.list= this.usersService.list();
+    this.list$ = this.usersService.list();
+      
   }
 
   onRowClick(user: User): void{
