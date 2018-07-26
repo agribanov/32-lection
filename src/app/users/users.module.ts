@@ -11,16 +11,17 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'list', pathMatch: 'full'},
-  {path: 'add',  component: AddUserComponent},
-  {path: 'list',  component: UsersListComponent},
-  {path: ':id',  component: EditUserComponent},
+  {path: '', component: UsersComponent, children: [
+    {path: '',  component: UsersListComponent},
+    {path: 'add',  component: AddUserComponent},
+    {path: ':id',  component: EditUserComponent},
+  ]}
 ]
 
 
 @NgModule({
   imports: [
-    RouterModule,
+    RouterModule.forChild(routes),
     CommonModule,
     FormsModule
   ],
