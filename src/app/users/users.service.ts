@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Users, USERS, User } from './models/User';
+const apiUrl = 'https://5b2153d4ca762000147b2730.mockapi.io/users'
 
 @Injectable({
   providedIn: 'root'
